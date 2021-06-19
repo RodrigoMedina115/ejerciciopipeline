@@ -2,6 +2,7 @@ package org.soyphea.k8s;
 
 import lombok.extern.slf4j.Slf4j;
 import org.soyphea.k8s.config.UserConfig;
+import org.soyphea.k8s.domain.Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +23,8 @@ public class K8SApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info(" Fetched user from k8s ConfigMap <spring-boot-k8s> is :{}", userConfig);
+        Password password  = new Password();
+        password.setClave("12312412151");
 
     }
 }
