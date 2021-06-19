@@ -28,9 +28,9 @@ pipeline {
         stage('SonarQube analysis') {
            steps{
                 script {
-                    def scannerHome = tool 'SonarQube Scanner';//def scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    def scannerHome = tool 'SonarQube Scanner';
                     withSonarQubeEnv('Sonar Server') {
-                      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejerciciodevop -Dsonar.sources=target/classes -Dsonar.host.url=http://172.17.0.3:9000 -Dsonar.login=c6e168cb7c5f5ec8b73f2839a110b8b3d3743240"
+                      sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejerciciodevop -Dsonar.sources=target -Dsonar.host.url=http://172.17.0.3:9000 -Dsonar.login=c6e168cb7c5f5ec8b73f2839a110b8b3d3743240"
 
                     }
                 }
@@ -40,7 +40,7 @@ pipeline {
         stage ('SCA') {
             steps {
                  sh 'mvn org.owasp:dependency-check-maven:check'
-                dependencyCheckPublisher failedNewCritical: 5, failedTotalCritical: 10, pattern: 'target/dad.xml', unstableNewCritical: 3, unstableTotalCritical: 5
+                //dependencyCheckPublisher failedNewCritical: 5, failedTotalCritical: 10, pattern: 'target/dad.xml', unstableNewCritical: 3, unstableTotalCritical: 5
             }
         }
 
