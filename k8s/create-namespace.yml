@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: example-k8s
+  labels:
+    app: spring-boot

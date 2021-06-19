@@ -1,0 +1,13 @@
+server:
+  port: 9977
+spring:
+  main:
+    lazy-initialization: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  health:
+    probes:
+      enabled: true

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-boot-k8s
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: POLLING
+        period: 5000
+      config:
+       # - name: ${spring.application.name} #Because my namespace same with application name.
+        - namespace: example-k8s
