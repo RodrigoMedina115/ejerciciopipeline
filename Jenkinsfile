@@ -49,29 +49,9 @@ pipeline {
        env.DOCKER = tool "Docker"
        env.DOCKER_EXEC = "${DOCKER}/bin/docker"
        sh '${DOCKER_EXEC} rm -f zap2'
-       sh '${DOCKER_EXEC} pull
-       owasp/zap2docker-stable'
-       sh '''
-       ${DOCKER_EXEC} run
-       --add-host="localhost:192.168.100.4" \
-       --rm -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8
-       --name zap2 -u zap \
-       -p 8090:8080 -d owasp/zap2docker-stable
-       zap.sh -daemon \
-       -port 8080 -host 0.0.0.0 -config
-       api.disablekey=true
-       '''
-       sh '''
-       ${DOCKER_EXEC} run
-       --add-host="localhost:192.168.100.4" \
-       -v
-       /Users/asajuro/Documents/BCI/AnalyzeQAS/Jenkins-Prac
-       tica/USACH/Dockerfile/zap/jenkins_home/tools:/zap/wr
-       k/:rw \
-       --rm -i owasp/zap2docker-stable
-       zap-baseline.py -t "http://zero.webappsecurity.com/" \
-       -I -r zap-report.html -l PASS
-       '''
+       sh '${DOCKER_EXEC} pull owasp/zap2docker-stable'
+       sh ''' ${DOCKER_EXEC} run --add-host="localhost:200.74.104.153" --rm -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 --name zap2 -u zap -p 8090:8080 -d owasp/zap2docker-stable zap.sh -daemon  -port 8080 -host 0.0.0.0 -config api.disablekey=true'''
+       sh ''' ${DOCKER_EXEC} run --add-host="localhost:200.74.104.153" -/Users/rmedinfo/Desktop/Capacitacion:/zap/wrk/:rw  --rm -i owasp/zap2docker-stable zap-baseline.py -t "http://zero.webappsecurity.com/" -I -r zap-report.html -l PASS'''
        }
        }
         stage('Scan Docker'){
