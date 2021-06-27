@@ -54,6 +54,7 @@ pipeline {
        sh ''' ${DOCKER_EXEC} run --add-host="localhost:200.74.104.153" -/Users/rmedinfo/Desktop/Capacitacion:/zap/wrk/:rw  --rm -i owasp/zap2docker-stable zap-baseline.py -t "http://zero.webappsecurity.com/" -I -r zap-report.html -l PASS'''
        }
        }
+       }
         stage('Scan Docker'){
         steps{
         script{
